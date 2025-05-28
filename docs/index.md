@@ -9,11 +9,11 @@ Welcome to my repository of Hack The Box (HTB) machine write-ups. Each entry is 
 
 2. **Follow the numbered sections** inside each write‑up:
 
-   **Synopsis —** key facts
-   **Enumeration —** ports, services, and initial findings
-   **Foothold —** gaining the first shell
-   **Privilege Escalation —** method and exploit
-   **Lessons Learned / References**
+   - **Synopsis —** key facts
+   - **Enumeration —** ports, services, and initial findings
+   - **Foothold —** gaining the first shell
+   - **Privilege Escalation —** method and exploit
+   - **Lessons Learned / References**
 
 3. **Use the built‑in search** (top‑right) to jump directly to commands, CVEs, or tools.
 
