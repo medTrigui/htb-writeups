@@ -547,9 +547,9 @@
 
   <h1>Sau</h1>
 
-<p><span style="color:#d9534f;"><strong>Path‑to‑root</strong></span>: <strong>SSRF in Request‑Baskets 1.2.1</strong> → internal <strong>Maltrail 0.53</strong> panel → unauth RCE (user <code>puma</code>) → sudo mis‑configuration (<code>systemctl</code> pager) → <strong>root</strong>.</p>
+<p><span style="color:#d9534f;"><strong>Path To Root</strong></span>: SSRF → internal panel access → unauthenticated command injection → user shell → sudo misconfiguration → root.</p>
 <hr />
-<h2 id="synopsis">Synopsis<a class="headerlink" href="#synopsis" title="Permanent link">🔗</a></h2>
+<h2 id="synopsis"><strong>Synopsis</strong><a class="headerlink" href="#synopsis" title="Permanent link">🔗</a></h2>
 <p>Sau is an easy-level HTB box that runs a Request-Baskets instance vulnerable to SSRF (CVE-2023-27163). It gave me asolid, hands-on understanding of Server-Side Request Forgery (SSRF). By abusing that flaw I was able to a filtered Maltrail panel that is vulnerable to unauthenticated OS-command injection. One payload later, I landed a reverse shell as the user <code>puma</code>. From there a sloppy <code>sudo</code> configuration handed me root.</p>
 <h3 id="skills-required">Skills Required<a class="headerlink" href="#skills-required" title="Permanent link">🔗</a></h3>
 <ul>
