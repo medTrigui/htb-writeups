@@ -1,13 +1,12 @@
 ---
-
 title: "Sau (HackTheBox | Easy | Retired 15 Apr 2022)"
 subtitle: "SSRF → Maltrail RCE → systemctl pager escape → root"
-author: "<YOUR NAME>"
+author: "Mohamed Trigui"
 date: "`r format(Sys.Date())`"
 output:
-github\_document:
-toc: true
----------
+  github_document:
+    toc: true
+---
 
 <span style="color:#d9534f;"><strong>Path‑to‑root</strong></span>: **SSRF in Request‑Baskets 1.2.1** → internal **Maltrail 0.53** panel → unauth RCE (user <code>puma</code>) → sudo mis‑configuration (<code>systemctl</code> pager) → <strong>root</strong>.
 
