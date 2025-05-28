@@ -12,14 +12,17 @@ output:
 
 ---
 
-## 0  Synopsis
+## Synopsis
+Sau is an easy-level HTB box that runs a Request-Baskets instance vulnerable to SSRF (CVE-2023-27163). It gave me asolid, hands-on understanding of Server-Side Request Forgery (SSRF). By abusing that flaw I was able to a filtered Maltrail panel that is vulnerable to unauthenticated OS-command injection. One payload later, I landed a reverse shell as the user `puma`. From there a sloppy `sudo` configuration handed me root.
 
-|                |                                            |
-| -------------- | ------------------------------------------ |
-| **OS**         | Ubuntu 20.04 (Linux)                       |
-| **Kernel**     | 5.4.0-104-generic                          |
-| **Difficulty** | Easy                                       |
-| **Skills**     | SSRF, Command Injection, Sudo Exploitation |
+### Skills Required
+- Web Enumeration
+- Linux Fundamentals
+
+### Skills Learned
+- Command Injection
+- Server Side Request Forgery
+- Sudo Exploitation
 
 ---
 
@@ -37,6 +40,7 @@ nmap -sC -sV -p$ports 10.10.11.224 -oN sau_nmap.txt
 ![Nmap result](img/step01_nmap.png)
 
 * **22/tcp** – OpenSSH 8.2p1
+rk on synopis
 * **55555/tcp** – Request‑Baskets 1.2.1 (HTTP)
 
 ### 1.2 Request‑Baskets SSRF to Maltrail
