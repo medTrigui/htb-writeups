@@ -268,15 +268,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-planned-additions" class="md-nav__link">
-    <span class="md-ellipsis">
-      3 Planned Additions
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#4-methodology-snapshot" class="md-nav__link">
     <span class="md-ellipsis">
       4 Methodology Snapshot
@@ -363,15 +354,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-planned-additions" class="md-nav__link">
-    <span class="md-ellipsis">
-      3 Planned Additions
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#4-methodology-snapshot" class="md-nav__link">
     <span class="md-ellipsis">
       4 Methodology Snapshot
@@ -397,7 +379,7 @@
 
 
 <h1 id="hack-the-box-writeups">Hack The Box Write‑ups<a class="headerlink" href="#hack-the-box-writeups" title="Permanent link">🔗</a></h1>
-<p>Welcome to my curated archive of Hack The Box (HTB) machine write‑ups.  Each report is designed to be <strong>self‑contained</strong> and <strong>reproducible</strong>, showcasing a complete attack chain from enumeration to privilege escalation while explaining <em>why</em> every step works.</p>
+<p>Welcome to my repository of Hack The Box (HTB) machine write-ups. Each entry is documented with a complete attack chain from enumeration to privilege escalation while explaining <em>why</em> every step works.</p>
 <blockquote>
 <p><strong>Disclosure note :</strong> Only <strong>retired</strong> HTB machines are published here, in line with the platform’s rules.</p>
 </blockquote>
@@ -421,34 +403,25 @@
 <th style="text-align: right;">Difficulty</th>
 <th>Machine</th>
 <th>Attack Path</th>
-<th style="text-align: center;"> Status</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align: right;">Easy</td>
 <td><a href="Sau/Sau/">Sau</a></td>
-<td>SSRF → Maltrail 0.53 RCE → <code>systemctl</code> pager escape</td>
-<td style="text-align: center;">✅</td>
+<td>SSRF -&gt; Maltrail 0.53 RCE -&gt; <code>systemctl</code> pager escape</td>
 </tr>
 </tbody>
 </table>
 <!-- Add rows here as new write‑ups are published. -->
 
 <hr />
-<h2 id="3-planned-additions">3  Planned Additions<a class="headerlink" href="#3-planned-additions" title="Permanent link">🔗</a></h2>
-<ol>
-<li><strong>Forest (Windows AD, Medium)</strong> – Kerberoasting &amp; domain privilege escalation.</li>
-<li><strong>Fluffy (Linux, Easy)</strong> – Web exploitation + sudo misconfig.</li>
-<li><strong>Buffer‑Overflow Lab</strong> – Custom exploit against VulnServer (<em>prep for OSCP</em>).</li>
-</ol>
-<hr />
 <h2 id="4-methodology-snapshot">4  Methodology Snapshot<a class="headerlink" href="#4-methodology-snapshot" title="Permanent link">🔗</a></h2>
 <ol>
-<li><strong>Enumeration :</strong>  <code>nmap</code>, <code>rustscan</code>, service‑specific scripts.</li>
-<li><strong>Exploitation :</strong>  Prefer manual payloads; Metasploit only when noted.</li>
-<li><strong>Post‑Exploitation :</strong>  Proof of Concept, flag capture, and clean‑up.</li>
-<li><strong>Documentation :</strong>  Screenshots at critical milestones, code blocks with exact commands, and links to official advisories.</li>
+<li><strong>Enumeration :</strong>  <code>nmap</code>.</li>
+<li><strong>Exploitation :</strong>  I prefer crafting manual payloads and analyzing CVE-related exploit scripts. I only rely on Metasploit when needed.</li>
+<li><strong>Post‑Exploitation :</strong>  Privilege Escalation and root access.</li>
+<li><strong>Documentation :</strong>  Screenshots, code blocks, and links to official advisories.</li>
 </ol>
 <hr />
 <p><em>Maintained by Mohamed Trigui – last update: <code>2025‑05‑28</code>.</em></p>
