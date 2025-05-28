@@ -7,7 +7,7 @@ theme:
 
 # Navigation sidebar
 nav:
-  - Home: 'docs/index.md'
+  - Home: 'index.md'
   - Sau: 'Sau/Sau.md'
 
 # Plugins
