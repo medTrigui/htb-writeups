@@ -1,6 +1,5 @@
 # Hack The Box Write‑ups
-
-Welcome to my curated archive of Hack The Box (HTB) machine write‑ups.  Each report is designed to be **self‑contained** and **reproducible**, showcasing a complete attack chain from enumeration to privilege escalation while explaining *why* every step works.
+Welcome to my repository of Hack The Box (HTB) machine write-ups. Each entry is documented with a complete attack chain from enumeration to privilege escalation while explaining *why* every step works.
 
 > **Disclosure note :** Only **retired** HTB machines are published here, in line with the platform’s rules.
 
@@ -21,28 +20,20 @@ Welcome to my curated archive of Hack The Box (HTB) machine write‑ups.  Ea
 
 ## 2  Current Write‑ups
 
-| Difficulty | Machine           | Attack Path                                         |  Status |
-| ---------: | ----------------- | --------------------------------------------------- | :-----: |
-|       Easy | [Sau](Sau/Sau.md) | SSRF → Maltrail 0.53 RCE → `systemctl` pager escape |    ✅    |
+| Difficulty | Machine           | Attack Path                                           |
+| ---------: | ----------------- | ----------------------------------------------------- |
+|       Easy | [Sau](Sau/Sau.md) | SSRF -> Maltrail 0.53 RCE -> `systemctl` pager escape |  
 
 <!-- Add rows here as new write‑ups are published. -->
 
 ---
 
-## 3  Planned Additions
-
-1. **Forest (Windows AD, Medium)** – Kerberoasting & domain privilege escalation.
-2. **Fluffy (Linux, Easy)** – Web exploitation + sudo misconfig.
-3. **Buffer‑Overflow Lab** – Custom exploit against VulnServer (*prep for OSCP*).
-
----
-
 ## 4  Methodology Snapshot
 
-1. **Enumeration :**  `nmap`, `rustscan`, service‑specific scripts.
-2. **Exploitation :**  Prefer manual payloads; Metasploit only when noted.
-3. **Post‑Exploitation :**  Proof of Concept, flag capture, and clean‑up.
-4. **Documentation :**  Screenshots at critical milestones, code blocks with exact commands, and links to official advisories.
+1. **Enumeration :**  `nmap`.
+2. **Exploitation :**  I prefer crafting manual payloads and analyzing CVE-related exploit scripts. I only rely on Metasploit when needed.
+3. **Post‑Exploitation :**  Privilege Escalation and root access.
+4. **Documentation :**  Screenshots, code blocks, and links to official advisories.
 
 ---
 
