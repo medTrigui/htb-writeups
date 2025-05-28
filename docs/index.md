@@ -1,28 +1,30 @@
 # Hack The Box Write‑ups
 Welcome to my repository of Hack The Box (HTB) machine write-ups. Each entry is documented with a complete attack chain from enumeration to privilege escalation while explaining *why* every step works.
 
-> **Disclosure note :** Only **retired** HTB machines are published here, in line with the platform’s rules.
-
 ---
 
 ## 1  How to Navigate this Repository
 
 1. **Pick a machine** from the left‑hand sidebar (or the list below).
-2. **Follow the numbered sections** inside the write‑up:
-   1. Synopsis – key facts at a glance
-   2. Enumeration – ports, services, and initial findings
-   3. Foothold – gaining the first shell
-   4. Privilege Escalation – method and exploit
-   5. Lessons Learned / References
-3. **Use the built‑in search** (top‑right) to jump to commands, CVEs, or tools.
+
+2. **Follow the numbered sections** inside each write‑up:
+
+   1. **Synopsis —** key facts at a glance
+   2. **Enumeration —** ports, services, and initial findings
+   3. **Foothold —** gaining the first shell
+   4. **Privilege Escalation —** method and exploit
+   5. **Lessons Learned / References**
+
+3. **Use the built‑in search** (top‑right) to jump directly to commands, CVEs, or tools.
+
 
 ---
 
 ## 2  Current Write‑ups
 
-| Difficulty | Machine           | Attack Path                                           |
-| ---------: | ----------------- | ----------------------------------------------------- |
-|       Easy | [Sau](Sau/Sau.md) | SSRF -> Maltrail 0.53 RCE -> `systemctl` pager escape |  
+| Difficulty | Machine           | Attack Path                                             |
+| ---------: | ----------------- | ------------------------------------------------------- |
+|       Easy | [Sau](Sau/Sau.md) | SSRF --> Maltrail 0.53 RCE --> `systemctl` pager escape |  
 
 <!-- Add rows here as new write‑ups are published. -->
 
@@ -38,4 +40,3 @@ Welcome to my repository of Hack The Box (HTB) machine write-ups. Each entry is 
 ---
 
 *Maintained by Mohamed Trigui – last update: `2025‑05‑28`.*
-
