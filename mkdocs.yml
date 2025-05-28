@@ -7,7 +7,7 @@ theme:
 
 # Navigation sidebar
 nav:
-  - Sau: 'Sau/Sau.Rmd'
+  - Sau: 'Sau/Sau.md'
 
 # Plugins
 plugins:
