@@ -142,7 +142,7 @@ This documentation is created for **educational purposes only**. All techniques 
 ##  Contact
 
 - **GitHub**: [@medTrigui](https://github.com/medTrigui)
-- **LinkedIn**: [Mohamed Trigui](https://linkedin.com/in/mohamed-trigui)
+- **LinkedIn**: [Mohamed Trigui](https://linkedin.com/in/mo-trigui)
 
 ---
 
