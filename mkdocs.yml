@@ -57,8 +57,8 @@ theme:
     view: material/eye
     
   # Logo and favicon
-  logo: material/security
-  favicon: material/security
+  logo: images/logo.svg
+  favicon: images/logo.svg
 
 # Navigation sidebar
 nav:
