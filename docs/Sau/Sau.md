@@ -47,7 +47,11 @@ nmap -sV 10.10.11.224
 
 The nmap scan reveals that `OpenSSH` is running on the default `SSH` port (22). Port 80 appears to be filtered, likely due to a firewall rule restricting inbound `HTTP` traffic. Additionally, an HTTP service is accessible on port 5555, which indicates a non-standard web service might be running there.
 
-### 2. Request‑Baskets SSRF to Maltrail
+<div class="writeup-step">
+<div class="step-number">2</div>
+<div><strong>Request‑Baskets SSRF to Maltrail</strong></div>
+</div>
+
 Since port `80` is filtered, I started exploring port `55555`, which revealed a `Request Baskets` instance running. `Request Baskets` is a web service that collects HTTP requests via a RESTful API.
 
 I noticed the version was `1.2.1`, and after a quick Google search, I found that this version is vulnerable to `CVE-2023-27163`: a Server-Side Request Forgery (SSRF) via the `/api/baskets/{name}` component, which allows attackers to make internal requests to services that should be unreachable.  
@@ -67,7 +71,12 @@ Following the exploit, I was able to access the crafted URL, which successfully 
 ![Maltrail](img/step03_maltrail.png)
 ---
 
-## <span style="color:#4b0082;"><strong>Foothold</strong></span>
+## :material-target: Foothold
+
+<div class="writeup-step">
+<div class="step-number">3</div>
+<div><strong>Exploiting Maltrail RCE</strong></div>
+</div>
 
 I searched for a proof-of-concept exploit and found a script that constructs a `curl` command to send a payload to the target URL through the login endpoint, which opens a shell on the victim machine.
 
@@ -83,7 +92,12 @@ I obtained a shell on the target and was able to get the `user` flag.
 
 ---
 
-## <span style="color:#4b0082;"><strong>Privilege Escalation</strong></span>
+## :material-shield-crown: Privilege Escalation
+
+<div class="writeup-step">
+<div class="step-number">4</div>
+<div><strong>Sudo Privilege Escalation via systemctl</strong></div>
+</div>
 
 The first thing I checked for privilege escalation was `sudo` permissions for the user `puma`. I discovered that this user can run `/usr/bin/systemctl status trail.service` with `sudo` and no password.  
 ![sudo list](img/step05_sudo.png)
@@ -94,7 +108,7 @@ One trick with `less` is that you can escape to a shell by typing `!`. So I ente
 ![root shell](img/step06_root.png)
 ---
 
-## <span style="color:#4b0082;"><strong>Exploitation Scripts</strong></span>
+## :material-code-braces: Exploitation Scripts
 
 | Script                       | Author            | Source                                                                                            |
 | ---------------------------- | ----------------- | ------------------------------------------------------------------------------------------------- |
@@ -103,7 +117,7 @@ One trick with `less` is that you can escape to a shell by typing `!`. So I ente
 
 ---
 
-## <span style="color:#4b0082;"><strong>References</strong></span>
+## :material-book-open-variant: References
 
 - [CVE-2023-27163 – Request-Baskets SSRF](https://nvd.nist.gov/vuln/detail/CVE-2023-27163)
 - [Maltrail 0.53 – Unauthenticated RCE (ExploitDB ID: 51676)](https://vulners.com/exploitdb/EDB-ID:51676)
