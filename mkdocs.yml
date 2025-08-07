@@ -139,7 +139,7 @@ extra:
     - icon: fontawesome/brands/github
       link: https://github.com/medTrigui
     - icon: fontawesome/brands/linkedin
-      link: https://linkedin.com/in/mohamed-trigui
+      link: https://linkedin.com/in/mo-trigui
   
   generator: false  # Remove "Made with Material for MkDocs"
 
