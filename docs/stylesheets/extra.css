@@ -1,0 +1,225 @@
+/* Custom HTB Writeups Styling */
+
+/* Root variables for consistent theming */
+:root {
+  --htb-green: #9fef00;
+  --htb-orange: #ff6b35;
+  --htb-blue: #00d4ff;
+  --htb-red: #ff073a;
+  --htb-purple: #7209b7;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --border-radius: 8px;
+}
+
+/* Custom color scheme for HTB branding */
+[data-md-color-scheme="default"] {
+  --md-primary-fg-color: var(--htb-red);
+  --md-accent-fg-color: var(--htb-green);
+}
+
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: var(--htb-red);
+  --md-accent-fg-color: var(--htb-green);
+}
+
+/* Enhanced code blocks */
+.highlight {
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 8px var(--shadow-color);
+  margin: 1.5em 0;
+  overflow: hidden;
+}
+
+.highlight pre {
+  margin: 0;
+  padding: 1rem;
+}
+
+/* Custom admonitions for writeups */
+.md-typeset .admonition.info {
+  border-color: var(--htb-blue);
+}
+
+.md-typeset .admonition.tip {
+  border-color: var(--htb-green);
+}
+
+.md-typeset .admonition.warning {
+  border-color: var(--htb-orange);
+}
+
+.md-typeset .admonition.danger {
+  border-color: var(--htb-red);
+}
+
+/* Machine difficulty badges */
+.difficulty-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-right: 0.5rem;
+}
+
+.difficulty-easy {
+  background-color: var(--htb-green);
+  color: #000;
+}
+
+.difficulty-medium {
+  background-color: var(--htb-orange);
+  color: #fff;
+}
+
+.difficulty-hard {
+  background-color: var(--htb-red);
+  color: #fff;
+}
+
+.difficulty-insane {
+  background-color: var(--htb-purple);
+  color: #fff;
+}
+
+/* Command/tool highlighting */
+.tool-highlight {
+  background: linear-gradient(90deg, var(--htb-green), var(--htb-blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: bold;
+}
+
+/* Enhanced tables */
+.md-typeset table:not([class]) {
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 8px var(--shadow-color);
+  overflow: hidden;
+  margin: 1.5em 0;
+}
+
+.md-typeset table:not([class]) th {
+  background: linear-gradient(135deg, var(--htb-red), var(--htb-purple));
+  color: white;
+  font-weight: bold;
+}
+
+/* Image styling */
+.md-typeset img {
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 12px var(--shadow-color);
+  margin: 1rem 0;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Step numbering for writeups */
+.writeup-step {
+  display: flex;
+  align-items: center;
+  margin: 2rem 0 1rem 0;
+}
+
+.step-number {
+  background: linear-gradient(135deg, var(--htb-red), var(--htb-purple));
+  color: white;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  margin-right: 1rem;
+  flex-shrink: 0;
+}
+
+/* Attack path visualization */
+.attack-path {
+  background: linear-gradient(90deg, rgba(159, 239, 0, 0.1), rgba(0, 212, 255, 0.1));
+  border-left: 4px solid var(--htb-green);
+  padding: 1rem;
+  margin: 1.5em 0;
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+  font-weight: bold;
+  color: var(--md-default-fg-color);
+}
+
+/* Code copy button styling */
+.md-clipboard {
+  background: var(--htb-green) !important;
+  color: #000 !important;
+}
+
+.md-clipboard:hover {
+  background: var(--htb-blue) !important;
+}
+
+/* Navigation enhancements */
+.md-nav__item--active > .md-nav__link {
+  color: var(--htb-green);
+  font-weight: bold;
+}
+
+/* Search highlighting */
+[data-md-component="search-result"] mark {
+  background-color: var(--htb-green);
+  color: #000;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .difficulty-badge {
+    font-size: 0.6rem;
+    padding: 0.2rem 0.5rem;
+  }
+  
+  .step-number {
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--md-default-bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--htb-red);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--htb-purple);
+}
+
+/* Animation for enhanced UX */
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3 {
+  transition: color 0.3s ease;
+}
+
+.md-typeset h1:hover,
+.md-typeset h2:hover,
+.md-typeset h3:hover {
+  color: var(--htb-green);
+}
+
+/* Print styles */
+@media print {
+  .difficulty-badge,
+  .attack-path,
+  .step-number {
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+}

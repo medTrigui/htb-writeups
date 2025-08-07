@@ -1,33 +1,43 @@
----
-title: "Sau (HackTheBox | Easy | Retired 15 Apr 2022)"
-author: "Mohamed Trigui"
-date: "`r format(Sys.Date())`"
-output:
-  github_document:
-    toc: true
+# Sau <span class="difficulty-badge difficulty-easy">Easy</span>
+
+!!! info "Machine Information"
+    - **Platform**: HackTheBox  
+    - **Difficulty**: Easy
+    - **Retired**: 15 Apr 2022
+    - **OS**: Linux
+
+<div class="attack-path">
+<strong>Path To Root</strong>: SSRF → internal panel access → unauthenticated command injection → user shell → sudo misconfiguration → root
+</div>
+
 ---
 
-<span style="color:#d9534f;"><strong>Path To Root</strong></span>: SSRF → internal panel access → unauthenticated command injection → user shell → sudo misconfiguration → root.
+## :material-information-outline: Synopsis
 
----
+Sau is an easy-level HTB box that runs a Request-Baskets instance vulnerable to SSRF (**CVE-2023-27163**). This machine provided excellent hands-on experience with Server-Side Request Forgery (SSRF) attacks. By exploiting this vulnerability, I gained access to a filtered Maltrail panel vulnerable to unauthenticated OS command injection. A single payload delivered a reverse shell as the user `puma`, and a misconfigured `sudo` permission led to root access.
 
-## <span style="color:#4b0082;"><strong>Synopsis</strong></span>
-Sau is an easy-level HTB box that runs a Request-Baskets instance vulnerable to SSRF (CVE-2023-27163). It gave me a solid, hands-on understanding of Server-Side Request Forgery (SSRF). By abusing that flaw I was able to a filtere Maltrail panel that is vulnerable to unauthenticated OS-command injection. One payload later, I landed a reverse shell as the user `puma`. From there a sloppy `sudo` configuration handed me root.
+!!! tip "Key Learning Points"
+    This machine demonstrates how **SSRF vulnerabilities** can be chained with other vulnerabilities to achieve full system compromise, emphasizing the importance of proper network segmentation and input validation.
 
 ### Skills Required
-- Web Enumeration
-- Linux Fundamentals
+- [x] Web Application Enumeration
+- [x] Linux Command Line Fundamentals  
+- [x] Basic Networking Concepts
 
 ### Skills Learned
-- Command Injection
-- Server Side Request Forgery
-- Sudo Exploitation
+- [x] **Server-Side Request Forgery (SSRF)** exploitation
+- [x] **Command Injection** techniques
+- [x] **Sudo privilege escalation** methods
+- [x] CVE research and exploitation
 
 ---
 
-## <span style="color:#4b0082;"><strong>Enumeration</strong></span>
+## :material-radar: Enumeration
 
-### 1. Nmap
+<div class="writeup-step">
+<div class="step-number">1</div>
+<div><strong>Port Scanning with Nmap</strong></div>
+</div>
 
 ```bash
 nmap -sV 10.10.11.224

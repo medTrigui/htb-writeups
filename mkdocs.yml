@@ -1,19 +1,148 @@
 site_name: HTB Write-ups – Mohamed Trigui
+site_description: Comprehensive HackTheBox machine writeups with detailed attack methodologies
+site_author: Mohamed Trigui
+site_url: https://medTrigui.github.io/htb-writeups/
+
+# Repository information
+repo_name: htb-writeups
+repo_url: https://github.com/medTrigui/htb-writeups
+edit_uri: edit/main/docs/
+
+# Theme configuration
 theme:
   name: material
+  language: en
+  
+  # Color scheme with dark/light mode toggle
   palette:
-    primary: indigo
-    accent: teal
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: red
+      accent: red
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: red
+      accent: red
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  
+  # Theme features
+  features:
+    - navigation.instant      # Instant loading
+    - navigation.tracking     # Anchor tracking
+    - navigation.tabs         # Top-level tabs
+    - navigation.tabs.sticky  # Sticky tabs
+    - navigation.sections     # Navigation sections
+    - navigation.expand       # Expand navigation
+    - navigation.indexes      # Section index pages
+    - navigation.top          # Back to top button
+    - search.highlight        # Search highlighting
+    - search.share           # Search sharing
+    - search.suggest         # Search suggestions
+    - content.code.copy      # Code copy button
+    - content.code.annotate  # Code annotations
+    - content.action.edit    # Edit button
+    - content.action.view    # View source button
+    - toc.follow             # TOC following
+    - toc.integrate          # TOC integration
+  
+  # Custom icons
+  icon:
+    repo: fontawesome/brands/github
+    edit: material/pencil
+    view: material/eye
+    
+  # Logo and favicon
+  logo: material/security
+  favicon: material/security
 
 # Navigation sidebar
 nav:
   - Home: 'index.md'
-  - Sau: 'Sau/Sau.md'
+  - Machines:
+    - Easy:
+      - Sau: 'Sau/Sau.md'
+    # - Medium: 
+    # - Hard:
+    # - Insane:
+  - Resources:
+    - Methodology: 'resources/methodology.md'
+    - Tools: 'resources/tools.md'
+    - Cheat Sheets: 'resources/cheatsheets.md'
 
 # Plugins
 plugins:
-  - search
+  - search:
+      separator: '[\s\-,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
+  - minify:
+      minify_html: true
+
+# Extensions
 markdown_extensions:
+  # Python Markdown
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
   - toc:
       permalink: "🔗"
+      permalink_title: Anchor link to this section
+      toc_depth: 3
+  
+  # Python Markdown Extensions
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+# Extra CSS and JavaScript
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+# Additional configuration
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/medTrigui
+    - icon: fontawesome/brands/linkedin
+      link: https://linkedin.com/in/mohamed-trigui
+  
+  generator: false  # Remove "Made with Material for MkDocs"
+
+# Copyright
+copyright: Copyright &copy; 2024 Mohamed Trigui
 
